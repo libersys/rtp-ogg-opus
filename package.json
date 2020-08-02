@@ -1,0 +1,77 @@
+{
+    "name": "rtp-ogg-opus",
+    "version": "1.0.0",
+    "description": "RTP Ogg/Opus Tools for NodeJS",
+    "main": "dist/index.js",
+    "author": "Dioris Moreno <dmoreno@libersys.io>",
+    "license": "MIT",
+    "keywords": [
+        "rtp",
+        "ogg",
+        "opus",
+        "native",
+        "module",
+        "c",
+        "c++",
+        "bindings",
+        "binary"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/libersys/rtp-ogg-opus.git"
+    },
+    "bugs": {
+        "url": "https://github.com/libersys/rtp-ogg-opus/issues"
+    },
+    "homepage": "https://github.com/libersys/rtp-ogg-opus#readme",
+    "dependencies": {
+        "bindings": "^1.5.0",
+        "node-addon-api": "^3.0.0",
+        "node-pre-gyp": "^0.15.0",
+        "stream-buffers": "^3.0.2"
+    },
+    "devDependencies": {
+        "@types/bindings": "^1.3.0",
+        "@types/debug": "^4.1.5",
+        "@types/jest": "^26.0.7",
+        "@types/node": "^14.0.26",
+        "debug": "^4.1.1",
+        "eslint": "^7.5.0",
+        "eslint-config-aqua": "^7.2.4",
+        "jest": "^26.1.0",
+        "node-gyp": "^7.0.0",
+        "ts-jest": "^26.1.3",
+        "ts-node": "^8.10.2",
+        "ts-node-dev": "^1.0.0-pre.56",
+        "typescript": "^3.9.7"
+    },
+    "eslintConfig": {
+        "extends": "aqua/node"
+    },
+    "scripts": {
+        "format": "prettier --write \"lib/**/*.ts\"",
+        "preinstall": "npm install node-pre-gyp",
+        "install": "node-pre-gyp install --fallback-to-build",
+        "build": "node-pre-gyp install build package",
+        "package": "node-pre-gyp package",
+        "rebuild": "node-pre-gyp rebuild",
+        "lint": "eslint lib",
+        "lint:fix": "eslint lib --fix",
+        "dev": "ts-node-dev lib/index.ts",
+        "example": "ts-node-dev lib/example.ts",
+        "gateway": "ts-node-dev lib/gateway.ts",
+        "opusplayer": "ts-node-dev lib/opusplayer.ts",
+        "wavplayer": "ts-node-dev lib/wavplayer.ts"
+    },
+    "binary": {
+        "module_name": "rtpoggopus",
+        "module_path": "./prebuild/{node_abi}-napi-v{napi_build_version}-{platform}-{arch}/",
+        "remote_path": "v{version}",
+        "package_name": "{module_name}-v{version}-{node_abi}-napi-v{napi_build_version}-{platform}-{arch}.tar.gz",
+        "host": "https://github.com/libersys/rtp-ogg-opus/releases/download/",
+        "napi_versions": [
+            3
+        ]
+    },
+    "gypfile": true
+}

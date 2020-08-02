@@ -1,0 +1,30 @@
+# Packages
+node_modules/
+
+# Log files
+logs/
+*.log
+npm-debug.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+
+# Media files
+lib/captures
+lib/music
+
+# Miscellaneous
+.vscode/
+.tmp/
+build/
+build-tmp*/
+include/
+!deps/libogg/include
+!deps/libopus/include
+prebuild/
+test/
+
+addon-build/
+compiled/
