@@ -27,7 +27,7 @@ export class OggOpusToRtp extends Transform {
 
     _transform(chunk: any, encoding: BufferEncoding, callback: TransformCallback): void {
         try {
-            this._transformer.transform(chunk, callback);
+            this._transformer.transform(chunk, callback, this);
         } catch (err) {
             debug('OggOpusToRtp error', err);
         }

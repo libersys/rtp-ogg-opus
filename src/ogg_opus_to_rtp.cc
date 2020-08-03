@@ -77,9 +77,9 @@ void OggOpusToRtp::Transform(const Napi::CallbackInfo &info)
 {
     Napi::Env env = info.Env();
 
-    if (info.Length() < 2)
+    if (info.Length() < 3)
     {
-        throw Napi::Error::New(env, "chunk and callback arguments expected.");
+        throw Napi::Error::New(env, "chunk, callback and parent arguments expected.");
     }
     if (!info[0].IsBuffer())
     {
@@ -89,9 +89,15 @@ void OggOpusToRtp::Transform(const Napi::CallbackInfo &info)
     {
         throw Napi::Error::New(env, "callback must be a function.");
     }
+    if (!info[2].IsObject())
+    {
+        throw Napi::Error::New(info.Env(), "parent must be a stream transform object.");
+    }
 
     Napi::Buffer<char> chunk = info[0].As<Napi::Buffer<char>>();
     Napi::Function callback = info[1].As<Napi::Function>();
+    Napi::Object thisObj = info[2].As<Napi::Object>();
+    Napi::Function push = thisObj.Get("push").As<Napi::Function>();
 
     char *input = chunk.Data();
     size_t inputSize = chunk.Length();
@@ -202,8 +208,7 @@ void OggOpusToRtp::Transform(const Napi::CallbackInfo &info)
 
             Napi::Buffer<unsigned char> output = Napi::Buffer<unsigned char>::Copy(env, reinterpret_cast<unsigned char *>(packet), packetSize);
 
-            callback.Call({env.Null(), output});
-            return;
+            push.Call(thisObj, {output});
         }
 
         if (eos > 0)
