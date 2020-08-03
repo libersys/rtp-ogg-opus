@@ -1,7 +1,6 @@
 import Debug from 'debug';
 import { Transform, TransformCallback } from 'stream';
 import bindings from 'bindings';
-import _ from 'lodash';
 
 const { RtpDecoder: RtpDecoderNative } = bindings('rtpoggopus');
 const debug = Debug('rtp-ogg-opus:*');

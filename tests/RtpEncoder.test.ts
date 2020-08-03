@@ -1,13 +1,13 @@
 import _ from 'lodash';
-import { v4 as uuid } from 'uuid';
-import Debug from 'debug';
+// import { v4 as uuid } from 'uuid';
+// import Debug from 'debug';
 import fs from 'fs';
 import path from 'path';
 
 import { RtpEncoder } from '../lib';
 import { randomInt } from './utils/random';
 
-const debug = Debug('rtp-ogg-opus:*');
+// const debug = Debug('rtp-ogg-opus:*');
 const attrs = ['version', 'payloadType', 'pad', 'ext', 'cc', 'mark', 'seq', 'time', 'ssrc', 'headerSize', 'packet'];
 const testFile = path.join(__dirname, 'utils/rtppayload.raw');
 
@@ -24,7 +24,7 @@ describe('RtpEncoder', () => {
         }
     });
 
-    afterEach(async () => {});
+    // afterEach(async () => {});
 
     it('should return a buffer (default mode)', done => {
         const encoder = new RtpEncoder();

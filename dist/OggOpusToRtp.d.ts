@@ -7,7 +7,7 @@ export interface OggOpusToRtpOptions {
 }
 export declare class OggOpusToRtp extends Transform {
     private _transformer;
-    constructor({ payloadType, sampleRate, objectMode }: OggOpusToRtpOptions);
+    constructor(options?: OggOpusToRtpOptions);
     _transform(chunk: any, encoding: BufferEncoding, callback: TransformCallback): void;
 }
 export default OggOpusToRtp;

@@ -6,7 +6,7 @@ export interface RtpOpusToPcmOptions {
 }
 export declare class RtpOpusToPcm extends Transform {
     private _transformer;
-    constructor({ sampleRate, channels }: RtpOpusToPcmOptions);
+    constructor(options?: RtpOpusToPcmOptions);
     _transform(chunk: any, encoding: BufferEncoding, callback: TransformCallback): void;
 }
 export default RtpOpusToPcm;

@@ -1,12 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var OggOpusToRtp_1 = require("./OggOpusToRtp");
-exports.OggOpusToRtp = OggOpusToRtp_1.default;
+Object.defineProperty(exports, "OggOpusToRtp", { enumerable: true, get: function () { return OggOpusToRtp_1.default; } });
 var RtpToOggOpus_1 = require("./RtpToOggOpus");
-exports.RtpToOggOpus = RtpToOggOpus_1.default;
+Object.defineProperty(exports, "RtpToOggOpus", { enumerable: true, get: function () { return RtpToOggOpus_1.default; } });
 var RtpDecoder_1 = require("./RtpDecoder");
-exports.RtpDecoder = RtpDecoder_1.default;
+Object.defineProperty(exports, "RtpDecoder", { enumerable: true, get: function () { return RtpDecoder_1.default; } });
 var RtpEncoder_1 = require("./RtpEncoder");
-exports.RtpEncoder = RtpEncoder_1.default;
+Object.defineProperty(exports, "RtpEncoder", { enumerable: true, get: function () { return RtpEncoder_1.default; } });
 var RtpOpusToPcm_1 = require("./RtpOpusToPcm");
-exports.RtpOpusToPcm = RtpOpusToPcm_1.default;
+Object.defineProperty(exports, "RtpOpusToPcm", { enumerable: true, get: function () { return RtpOpusToPcm_1.default; } });

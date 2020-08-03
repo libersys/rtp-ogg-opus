@@ -6,8 +6,8 @@ export interface RtpEncoderOptions {
     objectMode?: boolean;
 }
 export declare class RtpEncoder extends Transform {
-    private _decoder;
-    constructor({ payloadType, samples, objectMode }: RtpEncoderOptions);
+    private _encoder;
+    constructor(options?: RtpEncoderOptions);
     _transform(chunk: any, encoding: BufferEncoding, callback: TransformCallback): void;
 }
 export default RtpEncoder;

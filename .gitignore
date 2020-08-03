@@ -24,8 +24,8 @@ include/
 !deps/libogg/include
 !deps/libopus/include
 prebuild/
-test/
 
 addon-build/
 compiled/
 coverage/
+dist/

@@ -1,12 +1,12 @@
 import _ from 'lodash';
-import { v4 as uuid } from 'uuid';
-import Debug from 'debug';
+// import { v4 as uuid } from 'uuid';
+// import Debug from 'debug';
 import fs from 'fs';
 import path from 'path';
 
 import { RtpDecoder } from '../lib';
 
-const debug = Debug('rtp-ogg-opus:*');
+// const debug = Debug('rtp-ogg-opus:*');
 const attrs = ['version', 'payloadType', 'pad', 'ext', 'cc', 'mark', 'seq', 'time', 'ssrc', 'headerSize', 'payload'];
 const testFile = path.join(__dirname, 'utils/rtppacket.dat');
 
@@ -21,7 +21,7 @@ describe('RtpDecoder', () => {
         }
     });
 
-    afterEach(async () => {});
+    // afterEach(async () => {});
 
     it('should return a buffer (default mode)', done => {
         const decoder = new RtpDecoder();

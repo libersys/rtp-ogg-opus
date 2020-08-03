@@ -7,7 +7,7 @@ export interface RtpToOggOpusOptions {
 }
 export declare class RtpToOggOpus extends Transform {
     private _transformer;
-    constructor({ sampleRate, channels, objectMode }: RtpToOggOpusOptions);
+    constructor(options?: RtpToOggOpusOptions);
     _transform(chunk: any, encoding: BufferEncoding, callback: TransformCallback): void;
 }
 export default RtpToOggOpus;

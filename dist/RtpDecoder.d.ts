@@ -5,7 +5,7 @@ export interface RtpDecoderOptions {
 }
 export declare class RtpDecoder extends Transform {
     private _decoder;
-    constructor({ objectMode }: RtpDecoderOptions);
+    constructor(options?: RtpDecoderOptions);
     _transform(chunk: any, encoding: BufferEncoding, callback: TransformCallback): void;
 }
 export default RtpDecoder;
