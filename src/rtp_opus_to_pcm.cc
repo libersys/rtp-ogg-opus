@@ -63,18 +63,6 @@ RtpOpusToPcm::RtpOpusToPcm(const Napi::CallbackInfo &info) : Napi::ObjectWrap<Rt
 {
     Napi::Env env = info.Env();
 
-    this->self = info.This().As<Napi::Object>();
-    if (!this->self)
-    {
-        throw Napi::Error::New(env, "Invalid constructor call.");
-    }
-
-    this->push = this->self.Get("push").As<Napi::Function>();
-    if (!this->push)
-    {
-        throw Napi::Error::New(env, "Invalid parent object. Must be a stream.");
-    }
-
     if (info.Length() < 2)
     {
         throw Napi::Error::New(env, "Sample rate and channels expected.");
@@ -173,7 +161,10 @@ void RtpOpusToPcm::Transform(const Napi::CallbackInfo &info)
         Napi::Buffer<char> output = Napi::Buffer<char>::Copy(env, reinterpret_cast<char *>(this->outPcm), decodedLength);
 
         if (!output.IsEmpty())
-            this->push.Call(this->self, {output});
+        {
+            callback.Call({env.Null(), output});
+            return;
+        }
     }
 
     callback.Call({});

@@ -30,9 +30,6 @@ private:
     int channels = 2;
     int sampleRate = 48000;
 
-    Napi::Object self;
-    Napi::Function push;
-
     Napi::Value GetChannels(const Napi::CallbackInfo &info);
     Napi::Value GetSampleRate(const Napi::CallbackInfo &info);
 };

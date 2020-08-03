@@ -24,19 +24,7 @@ RtpDecoder::RtpDecoder(const Napi::CallbackInfo &info) : Napi::ObjectWrap<RtpDec
 {
     Napi::Env env = info.Env();
 
-    this->self = info.This().As<Napi::Object>();
-    if (!this->self)
-    {
-        throw Napi::Error::New(env, "Invalid constructor call.");
-    }
-
-    this->push = this->self.Get("push").As<Napi::Function>();
-    if (!this->push)
-    {
-        throw Napi::Error::New(env, "Invalid parent object. Must be a stream.");
-    }
-
-    if (info.Length() >= 1)
+    if (info.Length() > 0)
     {
         if (!info[0].IsBoolean())
         {
@@ -70,7 +58,7 @@ void RtpDecoder::Transform(const Napi::CallbackInfo &info)
     }
 
     Napi::Buffer<unsigned char> chunk = info[0].As<Napi::Buffer<unsigned char>>();
-    Napi::Function callback = info[2].As<Napi::Function>();
+    Napi::Function callback = info[1].As<Napi::Function>();
 
     unsigned char *packet = chunk.Data();
     size_t packetSize = chunk.Length();
@@ -101,12 +89,14 @@ void RtpDecoder::Transform(const Napi::CallbackInfo &info)
             retObj.Set("headerSize", rtp.header_size);
             retObj.Set("payload", payload);
 
-            this->push.Call(this->self, {retObj});
+            callback.Call({env.Null(), retObj});
         }
         else
         {
-            this->push.Call(this->self, {payload});
+            callback.Call({env.Null(), payload});
         }
+
+        return;
     }
 
     callback.Call({});

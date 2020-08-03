@@ -21,9 +21,6 @@ private:
     static Napi::FunctionReference constructor;
     bool objectMode = false;
 
-    Napi::Object self;
-    Napi::Function push;
-
     int sampleRate = 48000;
     rtp_header rtp;
 

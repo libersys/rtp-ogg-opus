@@ -8,6 +8,7 @@
                 "src/main.cc",
                 "src/helpers.cc",
                 "src/rtp_decoder.cc",
+                "src/rtp_encoder.cc",
                 "src/ogg_opus_to_rtp.cc",
                 "src/rtp_to_ogg_opus.cc",
                 "src/rtp_opus_to_pcm.cc",

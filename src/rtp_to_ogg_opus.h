@@ -22,8 +22,6 @@ private:
     static Napi::FunctionReference constructor;
 
     bool objectMode = false;
-    Napi::Object self;
-    Napi::Function push;
 
     int channels = 2;
     int sampleRate = 48000;

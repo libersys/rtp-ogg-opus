@@ -2,7 +2,7 @@ import Debug from 'debug';
 import { Transform, TransformCallback } from 'stream';
 import bindings from 'bindings';
 
-const { RtpToOggOpus: RtpToOggOpusNative } = bindings('rpt-ogg-opus');
+const { RtpToOggOpus: RtpToOggOpusNative } = bindings('rtpoggopus');
 const debug = Debug('rtp-ogg-opus:*');
 
 export interface RtpToOggOpusOptions {

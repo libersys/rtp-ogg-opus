@@ -40,18 +40,6 @@ RtpToOggOpus::RtpToOggOpus(const Napi::CallbackInfo &info) : Napi::ObjectWrap<Rt
 {
     Napi::Env env = info.Env();
 
-    this->self = info.This().As<Napi::Object>();
-    if (!this->self)
-    {
-        throw Napi::Error::New(env, "Invalid constructor call.");
-    }
-
-    this->push = this->self.Get("push").As<Napi::Function>();
-    if (!this->push)
-    {
-        throw Napi::Error::New(env, "Invalid parent object. Must be a stream.");
-    }
-
     if (info.Length() < 2)
     {
         throw Napi::Error::New(env, "Sample rate and channels expected.");
@@ -65,6 +53,9 @@ RtpToOggOpus::RtpToOggOpus(const Napi::CallbackInfo &info) : Napi::ObjectWrap<Rt
         throw Napi::Error::New(env, "Channels must be a number.");
     }
 
+    this->sampleRate = info[0].As<Napi::Number>();
+    this->channels = info[1].As<Napi::Number>();
+
     if (info.Length() > 2)
     {
         if (!info[2].IsBoolean())
@@ -73,9 +64,6 @@ RtpToOggOpus::RtpToOggOpus(const Napi::CallbackInfo &info) : Napi::ObjectWrap<Rt
         }
         this->objectMode = info[2].As<Napi::Boolean>();
     }
-
-    this->sampleRate = info[0].As<Napi::Number>();
-    this->channels = info[1].As<Napi::Number>();
 
     // TODO: What is the minimum size of an ogg bitstream?
     //       What buffer size is appropiate?
@@ -198,14 +186,16 @@ void RtpToOggOpus::Transform(const Napi::CallbackInfo &info)
                 retObj.Set("bufferOffset", this->bufferOffset);
                 retObj.Set("packetNumber", rtp.seq);
 
-                this->push.Call(this->self, {retObj});
+                callback.Call({env.Null(), retObj});
             }
             else
             {
-                this->push.Call(this->self, {container});
+                callback.Call({env.Null(), container});
             }
 
             this->pending = false;
+
+            return;
         }
         else
         {

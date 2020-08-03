@@ -24,19 +24,7 @@ OggOpusToRtp::OggOpusToRtp(const Napi::CallbackInfo &info) : Napi::ObjectWrap<Og
 {
     Napi::Env env = info.Env();
 
-    this->self = info.This().As<Napi::Object>();
-    if (!this->self)
-    {
-        throw Napi::Error::New(env, "Invalid constructor call.");
-    }
-
-    this->push = this->self.Get("push").As<Napi::Function>();
-    if (!this->push)
-    {
-        throw Napi::Error::New(env, "Invalid parent object. Must be a stream.");
-    }
-
-    if (info.Length() < 1)
+    if (info.Length() < 2)
     {
         throw Napi::Error::New(env, "Payload type and sample rate expected.");
     }
@@ -58,8 +46,6 @@ OggOpusToRtp::OggOpusToRtp(const Napi::CallbackInfo &info) : Napi::ObjectWrap<Og
         this->objectMode = info[2].As<Napi::Boolean>();
     }
 
-    this->sampleRate = info[1].As<Napi::Number>();
-
     this->rtp.version = 2;
     this->rtp.payload_type = info[0].As<Napi::Number>();
     this->rtp.pad = 0;
@@ -72,6 +58,8 @@ OggOpusToRtp::OggOpusToRtp(const Napi::CallbackInfo &info) : Napi::ObjectWrap<Og
     this->rtp.csrc = NULL;
     this->rtp.header_size = 0;
     this->rtp.payload_size = 0;
+
+    this->sampleRate = info[1].As<Napi::Number>();
 
     // Initialize our ogg sync state.
     if (ogg_sync_init(&this->ostate) < 0)
@@ -214,7 +202,8 @@ void OggOpusToRtp::Transform(const Napi::CallbackInfo &info)
 
             Napi::Buffer<unsigned char> output = Napi::Buffer<unsigned char>::Copy(env, reinterpret_cast<unsigned char *>(packet), packetSize);
 
-            this->push.Call(this->self, {output});
+            callback.Call({env.Null(), output});
+            return;
         }
 
         if (eos > 0)

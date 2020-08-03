@@ -1,26 +1,28 @@
-import { Transform, TransformCallback } from 'stream';
 import Debug from 'debug';
+import { Transform, TransformCallback } from 'stream';
+import bindings from 'bindings';
 
-import RtpPacket from './RtpPacket';
-
+const { RtpEncoder: RtpEncoderNative } = bindings('rtpoggopus');
 const debug = Debug('rtp-ogg-opus:*');
 
-export class RtpEncoder extends Transform {
-    private _rtp: RtpPacket;
+export interface RtpEncoderOptions {
+    payloadType: number;
+    samples: number;
+    objectMode: boolean;
+}
 
-    constructor(type: number) {
-        super();
-        this._rtp = new RtpPacket();
-        this._rtp.type = type;
+export class RtpEncoder extends Transform {
+    private _decoder: typeof RtpEncoderNative;
+
+    constructor(options: RtpEncoderOptions = { payloadType: 120, samples: 160, objectMode: false }) {
+        super({ objectMode: options.objectMode });
+        const { objectMode } = options;
+        this._decoder = new RtpEncoderNative(objectMode);
     }
 
     _transform(chunk: any, encoding: BufferEncoding, callback: TransformCallback): void {
         try {
-            this._rtp.payload = chunk;
-            this._rtp.seq++;
-            this._rtp.time += chunk.length / 2;
-            this.push(this._rtp.packet);
-            return callback();
+            this._decoder.transform(chunk, callback);
         } catch (err) {
             debug('RtpEncoder error', err);
         }
