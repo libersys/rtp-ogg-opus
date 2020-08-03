@@ -9,9 +9,8 @@ const bindings_1 = __importDefault(require("bindings"));
 const { RtpDecoder: RtpDecoderNative } = bindings_1.default('rtpoggopus');
 const debug = debug_1.default('rtp-ogg-opus:*');
 class RtpDecoder extends stream_1.Transform {
-    constructor(options = { objectMode: false }) {
-        super({ objectMode: options.objectMode });
-        const { objectMode } = options;
+    constructor({ objectMode = false }) {
+        super({ objectMode });
         this._decoder = new RtpDecoderNative(objectMode);
     }
     _transform(chunk, encoding, callback) {

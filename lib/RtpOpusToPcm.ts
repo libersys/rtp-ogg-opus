@@ -6,16 +6,16 @@ const { RtpOpusToPcm: RtpOpusToPcmNative } = bindings('rtpoggopus');
 const debug = Debug('rtp-ogg-opus:*');
 
 export interface RtpOpusToPcmOptions {
-    sampleRate: number;
-    channels: number;
+    sampleRate?: number;
+    channels?: number;
 }
 
 export class RtpOpusToPcm extends Transform {
     private _transformer: typeof RtpOpusToPcmNative;
 
-    constructor(options: RtpOpusToPcmOptions = { sampleRate: 48000, channels: 2 }) {
+    constructor(options?: RtpOpusToPcmOptions) {
         super();
-        const { sampleRate, channels } = options;
+        const { sampleRate, channels } = { sampleRate: 48000, channels: 2, ...options };
         this._transformer = new RtpOpusToPcmNative(sampleRate, channels);
     }
 

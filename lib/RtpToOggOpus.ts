@@ -6,17 +6,17 @@ const { RtpToOggOpus: RtpToOggOpusNative } = bindings('rtpoggopus');
 const debug = Debug('rtp-ogg-opus:*');
 
 export interface RtpToOggOpusOptions {
-    sampleRate: number;
-    channels: number;
-    objectMode: boolean;
+    sampleRate?: number;
+    channels?: number;
+    objectMode?: boolean;
 }
 
 export class RtpToOggOpus extends Transform {
     private _transformer: typeof RtpToOggOpusNative;
 
-    constructor(options: RtpToOggOpusOptions = { sampleRate: 48000, channels: 2, objectMode: false }) {
-        super({ objectMode: options.objectMode });
-        const { sampleRate, channels, objectMode } = options;
+    constructor(options?: RtpToOggOpusOptions) {
+        super({ objectMode: options?.objectMode ?? false });
+        const { sampleRate, channels, objectMode } = { sampleRate: 48000, channels: 2, objectMode: false, ...options };
         this._transformer = new RtpToOggOpusNative(sampleRate, channels, objectMode);
     }
 

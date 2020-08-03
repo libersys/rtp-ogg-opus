@@ -6,17 +6,22 @@ const { OggOpusToRtp: OggOpusToRtpNative } = bindings('rtpoggopus');
 const debug = Debug('rtp-ogg-opus:*');
 
 export interface OggOpusToRtpOptions {
-    payloadType: number;
-    sampleRate: number;
-    objectMode: boolean;
+    payloadType?: number;
+    sampleRate?: number;
+    objectMode?: boolean;
 }
 
 export class OggOpusToRtp extends Transform {
     private _transformer: typeof OggOpusToRtpNative;
 
-    constructor(options: OggOpusToRtpOptions = { payloadType: 120, sampleRate: 48000, objectMode: false }) {
-        super({ objectMode: options.objectMode });
-        const { payloadType, sampleRate, objectMode } = options;
+    constructor(options?: OggOpusToRtpOptions) {
+        super({ objectMode: options?.objectMode ?? false });
+        const { payloadType, sampleRate, objectMode } = {
+            payloadType: 120,
+            sampleRate: 48000,
+            objectMode: false,
+            ...options,
+        };
         this._transformer = new OggOpusToRtpNative(payloadType, sampleRate, objectMode);
     }
 

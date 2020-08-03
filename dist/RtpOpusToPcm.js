@@ -9,9 +9,8 @@ const bindings_1 = __importDefault(require("bindings"));
 const { RtpOpusToPcm: RtpOpusToPcmNative } = bindings_1.default('rtpoggopus');
 const debug = debug_1.default('rtp-ogg-opus:*');
 class RtpOpusToPcm extends stream_1.Transform {
-    constructor(options = { sampleRate: 48000, channels: 2 }) {
+    constructor({ sampleRate = 48000, channels = 2 }) {
         super();
-        const { sampleRate, channels } = options;
         this._transformer = new RtpOpusToPcmNative(sampleRate, channels);
     }
     _transform(chunk, encoding, callback) {

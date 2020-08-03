@@ -28,6 +28,7 @@ describe('RtpDecoder', () => {
 
         decoder.on('data', (data: any) => {
             expect(Buffer.isBuffer(data)).toBe(true);
+
             done();
         });
 
@@ -41,6 +42,11 @@ describe('RtpDecoder', () => {
             for (const key of attrs) {
                 expect(_.has(obj, key)).toBeTruthy();
             }
+
+            expect(obj.version).toBe(2);
+
+            expect(Buffer.isBuffer(obj.payload)).toBeTruthy();
+
             done();
         });
 
