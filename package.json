@@ -9,15 +9,15 @@
     "author": "Dioris Moreno <dmoreno@libersys.io>",
     "license": "MIT",
     "keywords": [
-        "rtp",
+        "rtp-streaming",
+        "ogg-opus",
         "ogg",
         "opus",
         "native",
         "module",
-        "c",
-        "c++",
         "bindings",
-        "binary"
+        "binary",
+        "napi"
     ],
     "repository": {
         "type": "git",
@@ -68,9 +68,9 @@
         "lint": "eslint . --ext .ts",
         "lint:fix": "eslint . --ext .ts --fix",
         "prepare": "npm run build",
-        "prepublishOnly" : "npm test && npm run lint",
+        "prepublishOnly": "npm test && npm run lint",
         "preversion": "npm run lint",
-        "version": "npm run format && git add -A src",
+        "version": "npm run format && git add .",
         "postversion": "git push && git push --tags"
     },
     "binary": {
