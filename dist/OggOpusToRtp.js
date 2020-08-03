@@ -18,7 +18,7 @@ class OggOpusToRtp extends stream_1.Transform {
     }
     _transform(chunk, encoding, callback) {
         try {
-            this._transformer.transform(chunk, callback);
+            this._transformer.transform(chunk, callback, this);
         }
         catch (err) {
             debug('OggOpusToRtp error', err);
