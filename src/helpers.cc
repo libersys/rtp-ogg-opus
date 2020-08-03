@@ -157,7 +157,7 @@ ogg_packet *op_opushead(int samplerate, int channels)
 /* manufacture a generic OpusTags packet */
 ogg_packet *op_opustags(void)
 {
-    char *vendor = "node-ogg-opus";
+    char *vendor = "rtp-ogg-opus using libopus";
     int size = 8 + 4 + strlen(vendor) + 4;
     unsigned char *data = (unsigned char *)malloc(size);
     ogg_packet *op = (ogg_packet *)malloc(sizeof(*op));
