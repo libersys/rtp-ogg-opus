@@ -6,7 +6,8 @@
     "files": [
         "dist/**/*",
         "deps/**/*",
-        "src/**/*"
+        "src/**/*",
+        "binding.gyp"
     ],
     "author": "Dioris Moreno <dmoreno@libersys.io>",
     "license": "MIT",
