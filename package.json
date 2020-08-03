@@ -4,7 +4,9 @@
     "description": "RTP Ogg/Opus Tools for NodeJS",
     "main": "dist/index.js",
     "files": [
-        "dist/**/*"
+        "dist/**/*",
+        "deps/**/*",
+        "src/**/*"
     ],
     "author": "Dioris Moreno <dmoreno@libersys.io>",
     "license": "MIT",
@@ -54,11 +56,8 @@
         "ts-node-dev": "^1.0.0-pre.56",
         "typescript": "^3.9.7"
     },
-    "eslintConfig": {
-        "extends": "aqua/node"
-    },
     "scripts": {
-        "test": "jest --watchAll --coverage --verbose --config jestconfig.json",
+        "test": "jest --coverage --config jestconfig.json",
         "format": "prettier --write \"lib/**/*.ts\"",
         "preinstall": "npm install node-pre-gyp",
         "install": "node-pre-gyp install --fallback-to-build",
