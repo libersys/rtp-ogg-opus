@@ -32,6 +32,7 @@
     "homepage": "https://github.com/libersys/rtp-ogg-opus#readme",
     "dependencies": {
         "bindings": "^1.5.0",
+        "debug": "^4.1.1",
         "node-addon-api": "^3.0.0",
         "node-pre-gyp": "^0.15.0"
     },
@@ -44,7 +45,6 @@
         "@types/uuid": "^8.0.0",
         "@typescript-eslint/eslint-plugin": "^3.7.1",
         "@typescript-eslint/parser": "^3.7.1",
-        "debug": "^4.1.1",
         "eslint": "^7.5.0",
         "eslint-config-prettier": "^6.11.0",
         "eslint-config-typescript": "^3.0.0",
