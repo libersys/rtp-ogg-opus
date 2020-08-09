@@ -10,8 +10,8 @@ libopus 1.3.1 and libogg 1.3.4. The core of this library is based on [opus-tools
 OggOpusToRtp: used to read ogg/opus files or streams and send them through RTP.
 RtpDecoder: used to decode RTP packets into streams (payload).
 RtpEncoder: used to encode streams into RTP packets.
-RtpOpusToPcm: read RTP Opus encoded packets and converts them to Linear PCM.
-RtpToOggOpus: read RTP Opus encoded packets and encapsulate them in Ogg containers.
+RtpOpusToPcm: used to read RTP Opus encoded packets and converts them to Linear PCM.
+RtpToOggOpus: used to read RTP Opus encoded packets and encapsulate them in Ogg containers.
 
 ## Installation
 
