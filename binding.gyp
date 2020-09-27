@@ -16,6 +16,13 @@
             "dependencies": ["deps/libogg/libogg.gyp:libogg", "deps/libopus/libopus.gyp:libopus"],
             "cflags!": ["-fno-exceptions"],
             "cflags_cc!": ["-fno-exceptions"],
+            "conditions": [
+                ['OS=="mac"', {
+                    "xcode_settings": {
+                        "GCC_ENABLE_CPP_EXCEPTIONS": "YES"
+                    }
+                }]
+            ],
             "cflags": [
                 "-pthread",
                 "-fno-strict-aliasing",
