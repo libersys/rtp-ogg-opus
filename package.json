@@ -1,6 +1,6 @@
 {
     "name": "rtp-ogg-opus",
-    "version": "1.0.9",
+    "version": "1.0.8",
     "description": "RTP Ogg/Opus Tools for NodeJS",
     "main": "dist/index.js",
     "files": [
@@ -71,7 +71,7 @@
         "prepublishOnly": "yarn test && yarn run lint",
         "preversion": "yarn run lint",
         "version": "yarn run format && git add .",
-        "postversion": "git push --tags && yarn publish . --tag $npm_package_version && git push && echo \"Successfully released version $npm_package_version!\""
+        "postversion": "git push --tags"
     },
     "binary": {
         "module_name": "rtpoggopus",
