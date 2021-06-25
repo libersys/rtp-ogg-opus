@@ -58,7 +58,6 @@
         "typescript": "^4.3.4"
     },
     "scripts": {
-        "pub": "yarn version patch --force && yarn publish",
         "test": "jest --coverage --config jestconfig.json",
         "format": "prettier --write \"lib/**/*.ts\"",
         "install": "node-pre-gyp install --fallback-to-build",
