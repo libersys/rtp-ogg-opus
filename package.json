@@ -1,6 +1,6 @@
 {
     "name": "rtp-ogg-opus",
-    "version": "1.0.10",
+    "version": "1.0.7",
     "description": "RTP Ogg/Opus Tools for NodeJS",
     "main": "dist/index.js",
     "files": [
