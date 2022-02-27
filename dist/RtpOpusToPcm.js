@@ -7,8 +7,8 @@ exports.RtpOpusToPcm = void 0;
 const debug_1 = __importDefault(require("debug"));
 const stream_1 = require("stream");
 const bindings_1 = __importDefault(require("bindings"));
-const { RtpOpusToPcm: RtpOpusToPcmNative } = bindings_1.default('rtpoggopus');
-const debug = debug_1.default('rtp-ogg-opus:*');
+const { RtpOpusToPcm: RtpOpusToPcmNative } = (0, bindings_1.default)('rtpoggopus');
+const debug = (0, debug_1.default)('rtp-ogg-opus:*');
 class RtpOpusToPcm extends stream_1.Transform {
     constructor(options) {
         super();
